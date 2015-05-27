@@ -1,8 +1,10 @@
 <?php
 
-class HelloWorld {
+class Hello {
     function get() {
-        echo json_encode("Hello world");
+        error_log("Got to here");
+        $data = array("Greetings!" => "Hello World");
+        display_200($data);
     }
     
     function post(){

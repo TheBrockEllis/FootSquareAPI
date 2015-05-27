@@ -11,7 +11,7 @@ function protect($string){
 // FETCH POST DATA - shim used to set data from php://input as $_POST
 ///////////////////////////////////////////////////////////////////////////
 function fetch_post_data(){
-    $_POST = json_decode( urldecode( file_get_contents("php://input") ), true );
+    return(json_decode( urldecode( file_get_contents("php://input") ), true ));
 }
 
 ///////////////////////////////////////////////////////////////////////////
