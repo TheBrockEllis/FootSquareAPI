@@ -2,6 +2,7 @@
 
 //to bounce OPTIONS requests right away
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    error_log("Bounce options");
     exit;
 }
 
@@ -20,6 +21,7 @@ Toro::serve(array(
 
     //GET Returns details about a specific game
     //POST Adds players to a game
+    //DELETE removes game data, gameplayers and rounds
     "/Games/:number" => "Game",
 
     //GET Returns a list of all the rounds in a game

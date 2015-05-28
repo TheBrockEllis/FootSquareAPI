@@ -1,3 +1,9 @@
+DirectoryIndex index.php
+
+Header add Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Methods: "GET,POST,DELETE,OPTIONS"
+Header add Access-Control-Allow-Headers: "X-Requested-With, Token, Authorization, Origin, Content-Type, Content-Length, Accept"
+
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

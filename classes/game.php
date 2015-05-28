@@ -3,7 +3,7 @@
 class Game {
     function get($gameid) {
         Global $db;
-                
+
         $sql = $db->prepare("SELECT * FROM games WHERE GameID = :gameid");
         $sql->execute( array(":gameid" => $gameid) );
         $rs = $sql->fetch(PDO::FETCH_ASSOC);
@@ -39,6 +39,25 @@ class Game {
         if($added) display_200($rs);
         else display_204();
 
+    }
+
+    function delete($gameid){
+        Global $db;
+
+        $sql = $db->prepare("DELETE FROM games WHERE GameID = :gameid");
+        $rs = $sql->execute( array(":gameid" => $gameid) );
+        if($rs) $data['games'] = "deleted";
+ 
+        $sql = $db->prepare("DELETE FROM gameplayers WHERE GameID = :gameid");
+        $rs = $sql->execute( array(":gameid" => $gameid) );
+        if($rs) $data['gameplayers'] = "deleted";
+        
+        $sql = $db->prepare("DELETE FROM rounds WHERE GameID = :gameid");
+        $rs = $sql->execute( array(":gameid" => $gameid) );
+        if($rs) $data['rounds'] = "deleted";
+
+        if($data) display_200($data);
+        else display_204();
     }
 }
 
