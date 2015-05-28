@@ -58,7 +58,21 @@ class Game {
 
         if($data) display_200($data);
         else display_204();
-    }
-}
+    }//end delete
+
+    function patch($gameid){
+        Global $db;
+        
+        $data = fetch_post_data();
+
+        $sql = $db->prepare("UPDATE games SET StopTime = :stoptime WHERE GameID = :gameid");
+        $rs = $sql->execute( array(":stoptime" => $data['StopTime'], ":gameid" => $gameid) );
+                
+        if($rs) display_200($rs);
+        else display_204();
+
+    }//end patch
+
+}//end class
 
 ?>
