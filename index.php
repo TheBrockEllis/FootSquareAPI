@@ -34,7 +34,10 @@ Toro::serve(array(
 
     //GET Look at details for one player
     //POST Update a players details
-    "/Players/:number" => "Player"
+    "/Players/:number" => "Player",
+
+    //GET Returns all methods that one can be slain
+    "/Methods" => "Methods"
 ));
 
 ?>

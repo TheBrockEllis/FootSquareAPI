@@ -16,7 +16,7 @@ class Rounds {
         Global $db;
 
         $data = fetch_post_data();
-
+        
         $killerid = $data['KillerPlayerID'];
         $killedid = $data['KilledPlayerID'];
         $methodid = $data['MethodID'];

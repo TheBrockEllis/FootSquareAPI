@@ -4,6 +4,11 @@ class Game {
     function get($gameid) {
         Global $db;
 
+        $random = protect($_GET['random']);
+        if(empty($random)) $random = 0;
+
+        error_log("Random $random");
+
         $sql = $db->prepare("SELECT * FROM games WHERE GameID = :gameid");
         $sql->execute( array(":gameid" => $gameid) );
         $rs = $sql->fetch(PDO::FETCH_ASSOC);
@@ -16,6 +21,8 @@ class Game {
             if($rs2) $rs["Players"] = $rs2;
         }
         
+        if($random) shuffle($rs["Players"]);
+
         if($rs) display_200($rs);
         else display_204();
     }
@@ -64,6 +71,7 @@ class Game {
         Global $db;
         
         $data = fetch_post_data();
+        if(empty($data)) $data['StopTime'] = date("Y-m-d H:i:s");
 
         $sql = $db->prepare("UPDATE games SET StopTime = :stoptime WHERE GameID = :gameid");
         $rs = $sql->execute( array(":stoptime" => $data['StopTime'], ":gameid" => $gameid) );
